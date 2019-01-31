@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{ margin: 0; padding: 0; list-style: none;}
+    .nav{
+        width: 300px;
+        margin: 100px auto;
+    }
+    .nav li{
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        float: left;
+        text-align: center;
+    }
+    .nav li a{
+        display: block;
+        height: 40px;
+        text-decoration: none;
+        color: #333;
+        background: #ccc;
+    }
+    .nav li a:hover{
+        background: pink;
+    }
+    .nav li ul{
+        display: none;
+    }
+    </style>
+    <!-- <script src="jq/jquery-1.11.2.min.js"></script>
+    <script>
+    // $(function(){
+    //     // 清除动画排队机制：在形成动画函数之前加stop()
+    //     // 鼠标滑过（），二级菜单显示
+    //     $('.nav li').mouseover(function(){
+    //         // 这个li的子级ul显示
+    //         $(this).children('ul').stop().show(500)
+    //     })
+    //     $('.nav li').mouseout(function(){
+    //         $(this).children('ul').stop().hide(500)
+    //     })
+    // })
+
+    </script> -->
+</head>
+<body>
+    <div class="nav">
+            <ul>
+                    <li>
+                        <a href="###">男星</a>
+                        <ul>
+                            <li><a href="###">王宝强</a></li>
+                            <li><a href="###">陈羽凡</a></li>
+                            <li><a href="###">.....</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="###">女星</a>
+                        <ul>
+                            <li><a href="###">杨幂</a></li>
+                            <li><a href="###">柳岩</a></li>
+                            <li><a href="###">赵丽颖</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="###">导演</a>
+                        <ul>
+                            <li><a href="###">冯小刚</a></li>
+                            <li><a href="###">张艺谋</a></li>
+                            <li><a href="###">丁黑</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+    </div>
+    <script src="jq/jquery-1.11.2.min.js"></script>
+    <script>
+        $(function(){
+            $('.nav li').mouseover(function(){
+                $(this).children('ul').stop().show()
+            })
+            $('.nav li').mouseout(function(){
+                $(this).children('ul').stop().hide()
+            })
+        })
+    </script>
+</body>
+</html>

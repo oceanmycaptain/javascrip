@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">开始</button>
+    <button id="btn2">停止</button>
+    <button id ='btn3'>单次定时器</button>
+    <script>
+        var oBtn1 = document.getElementById('btn1')
+        var oBtn2 = document.getElementById('btn2')
+        var oBtn3 = document.getElementById('btn3')
+        var oTime;
+        oBtn1.onclick = function(){
+            oTime = setInterval('console.log("123")',2000)
+        }
+        oBtn2.onclick = function(){
+            clearInterval(oTime)
+        }
+        oBtn3.onclick = function(){
+            setTimeout('window.close()',7000)
+           
+        }
+
+    </script>
+</body>
+</html>

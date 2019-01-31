@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color:gold;
+            position:absolute;
+            left: 0;
+            top: 0;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color:green;
+            position:absolute;
+            left: 100px;
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id='box1' class="box1"></div>
+    <script>
+        var box1 = document.getElementById('box1')
+        // var box2 = document.getElementById('box2')
+        var speed = 5
+        var current = box1.offsetWidth
+        setInterval((move_div),50)
+        function move_div(){
+            current += speed
+            if(current>600){
+                speed = -5
+            }
+            if(current<0){
+                speed = 5
+            }
+            box1.style.left = current+'px';
+            box1.style.top = current+'px';
+        }
+    </script>
+</body>
+</html>

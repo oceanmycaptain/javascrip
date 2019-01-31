@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="pifu1.css" id="stye_pifu">
+</head>
+<body>
+    <h2>网页换肤</h2>
+    <button id="box1">皮肤1</button>
+    <button id="box2">皮肤2</button>
+    <script>
+        var box1 = document.getElementById('box1')
+        var box2 = document.getElementById('box2')
+        var todo = document.getElementById('stye_pifu')
+
+        //  = function(){
+        //     if (box1.onclick){
+        //         todo.href = 'pifu1.css'
+        //     }else if (box2.onclick){
+        //         todo.href = 'pifu2.css'
+        //     }
+        // }
+        box1.onclick = function(){
+            todo.href = 'pifu1.css'     
+        }
+        box2.onclick = function(){
+            todo.href = 'pifu2.css'
+        }
+    </script>
+</body>
+</html>

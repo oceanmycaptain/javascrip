@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+    <button id='btn'>按钮</button>
+    <div id="box"></div>
+    <script src="jq/jquery-1.11.2.min.js"></script>
+    <script>
+        $(function(){
+            $('#btn').click(function(){
+                // $('#box').slideToggle(1000);
+                $('#box').toggle(1000)
+                $('#btn').html('打开')
+                $('#btn').css({color:'red',fontfamily:'宋体'})
+                var a  = $('#btn').css('color') //抽取css里的属性里的值
+                console.log(a)
+            })
+        })
+    </script>
+</body>
+</html>

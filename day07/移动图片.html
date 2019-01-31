@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative
+        }
+        div{
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script src="../day06/jq/jquery-1.11.2.min.js"></script>
+    <script>
+        $(function(){
+            $('div').animate({'left':'500px'},2000,'linear')
+        })
+    </script>
+</body>
+</html>

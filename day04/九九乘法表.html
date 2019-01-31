@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>li{
+        float: left;
+        list-style: none;
+        width: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div id="table"></div>
+    <script>
+        var b = 1
+        while (b< 9){
+           var a = 1
+           while (a <= b){
+               var z = a*b
+               document.write('<li>'+a+'*'+b+'='+z+'</li>')
+               a ++
+           }
+           document.write('<br>')
+           b ++            
+        }
+    </script>
+</body>
+</html>

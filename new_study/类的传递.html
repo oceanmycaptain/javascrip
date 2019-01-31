@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function setName(obj){
+            obj.name = 'Nicholas';
+            obj = new Object();
+            obj.name1 = 'Greg'
+            return obj
+        }
+        var person = new Object();
+        setName(person);
+        var obj1 = setName(person)
+        console.log(obj1.name)
+        console.log(obj1.name1)
+
+    </script>
+</body>
+</html>

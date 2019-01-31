@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tab_con{
+            width:500px;
+            height:350px;
+            margin:50px auto 0;
+        }
+        .tab_btns{
+            height:50px;
+        }
+        .tab_btns input{
+            width:100px;
+            height:50px;
+            background:#ddd;
+            border:0px;
+            outline:none;
+        }
+
+        .tab_btns .active{
+            background:gold;
+        }
+
+        .tab_cons{
+            height:300px;
+            background:gold;
+        }
+
+        .tab_cons div{
+            height:300px;
+            line-height:300px;
+            text-align:center;
+            display:none;
+            font-size:30px;
+        }
+
+        .tab_cons .current{
+            display:block;
+        }
+    </style>
+    <!-- <script src="jQuery/jquery-1.12.4.min.js"></script>
+    <script>
+    $(function(){
+        $('input').mouseover(function(){
+            // $(this).addClass('active')
+            // $(this).siblings().removeClass()
+            $(this).addClass('active').siblings().removeClass()
+            // 得到按钮鼠标滑过的下标，从3个内容div中选中和这个下标相等的内容显示
+            var num = $(this).index()
+            // alert(num)
+            // $('.tab_cons div').eq(num).addClass('current')
+            // $('.tab_cons div').eq(num).siblings().removeClass()
+            $('.tab_cons div').eq(num).addClass('current').siblings().removeClass()
+        })
+    })
+    </script> -->
+</head>
+
+<body>
+    <div class="tab_con">
+        <div class="tab_btns">
+            <input type="button" value="按钮一" class="active">
+            <input type="button" value="按钮二">
+            <input type="button" value="按钮三">
+        </div>
+        <div class="tab_cons">
+            <div class="current">按钮一对应的内容</div>
+            <div>按钮二对应的内容</div>
+            <div>按钮三对应的内容</div>
+        </div>
+    </div>
+    <script src="jq/jquery-1.11.2.min.js"></script>
+    <script>
+        $(function(){
+            $('input').mouseover(function(){
+                $(this).addClass('active').siblings().removeClass()
+                var index_num = $(this).index()
+                $('.tab_cons div').eq(index_num).addClass('current').siblings().removeClass()
+            })
+        })
+    </script>
+</body>
+</html>

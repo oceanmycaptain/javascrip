@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body id= 'box'>
+    <button id='box1'>隐藏</button>
+    <script>
+        function myfun(idvalue) {
+            return document.getElementById(idvalue)
+        }
+    </script>
+    <script>
+        var showObj = myfun('box1')
+        var boxObj = myfun('box')
+
+        showObj.onclick = function () {
+           if(this.innerHTML=='隐藏'){
+               boxObj.style.backgroundColor='black';
+               this.innerHTML='显示';
+           }else if(this.innerHTML == '显示'){
+               boxObj.style.backgroundColor = 'white';
+               this.innerHTML = '隐藏'
+           }
+        }
+
+
+    </script>
+</body>
+
+</html>

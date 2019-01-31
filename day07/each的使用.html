@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        用户名：<input type="text" value="请输入用户名">
+    </form>
+    <ul>
+        <li>'列表1'</li>
+        <li>'列表2'</li>
+        <li>'列表3'</li>
+        <li>'列表4'</li>
+        <li>'列表5'</li>
+        <li>'列表6'</li>
+        <li>'列表7'</li>
+        <li>'列表8'</li>
+    </ul>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+        // $(function(){
+        //     $('li').each(function(e){
+        //         alert(e)
+        //     })
+        // })
+        $(function(){
+            $('input').focus(function(){
+                if($(this).val() =='请输入用户名'){
+                    $(this).val('')
+                    //获得焦点执行的功能
+                }
+            })
+            $('input').blur(function(){
+                if($(this).val()== ''){
+                    $(this).val('请输入用户名')
+                    //失去焦点执行的功能
+                    }
+            })
+        })
+    </script>
+</body>
+</html>

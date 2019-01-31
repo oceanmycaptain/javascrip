@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/main02.css">
+
+</head>
+
+<body>
+    <div class="set_con">
+        <div class="left_set">
+            <label>姓名：</label>
+            <input type="text" id="input01" value="默认值">
+            <label>职位：</label>
+            <input type="text" id="input02">
+            <label>公司名称：</label>
+            <input type="text" id="input03">
+            <label>手机：</label>
+            <input type="text" id="input04">
+            <label>email：</label>
+            <input type="text" id="input05">
+            <label>地址：</label>
+            <input type="text" id="input06">
+            <label>风格：</label>
+            <select id="input07">
+                <option value="0">风格一</option>
+                <option value="1">风格二</option>
+                <option value="2">风格三</option>
+            </select>
+            <input type="button" value="设 置" class="setbtn" id="setcard">
+        </div>
+        <div class="right_show">
+            <div class="idcard01" id="card_wrap">
+                <div class="p01">张大山<em>产品经理</em></div>
+                <div class="p02">
+                    <p class="company">银河科技信息技术有限公司</p>
+                    <p>手机：1808888888</p>
+                    <p>email：dasan@126.com</p>
+                    <p>地址：中关村银河大厦B座2603</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+    </script>
+    <script>
+        //1.获取要操作的标签对象
+        var oSetcard = $('setcard')
+        var oInpt01 = $('input01')
+        var oInpt02 = $('input02')
+        var oInpt03 = $('input03')
+        var oInpt04 = $('input04')
+        var oInpt05 = $('input05')
+        var oInpt06 = $('input06')
+        var oInpt07 = $('input07')
+        var new_card_wrap = $('card_wrap')
+        //2.给设置按钮注册onclick事件 
+        oSetcard.onclick = function () {
+            if (oInpt01.value==''||oInpt02.value==''||oInpt03.value==''||oInpt04.value==''||oInpt05.value==''||oInpt06.value=='')
+            { alert('不予许为空') 
+                return }
+            var str1 = '<div class="p01">'+oInpt01.value+'<em>'+oInpt02.value+'</em></div><div class="p02"><p class="company">'+oInpt03.value+'</p><p>手机：'+oInpt04.value+'</p><p>email：'+oInpt05.value+'</p><p>地址：'+oInpt06.value+'</p></div>'
+            new_card_wrap.innerHTML = str1
+            if (oInpt07.value =='0') 
+            {new_card_wrap.className ='idcard01'}
+            else if(oInpt07.value =='1')
+            {new_card_wrap.className ='idcard02'}
+            else if(oInpt07.value =='2')
+            {new_card_wrap.className ='idcard03'}  
+        }
+        //3.将获取到数据 数据是保存在value值中 写入到 字符串与变量之间拼接 使用+
+
+
+    </script>
+</body>
+
+</html>

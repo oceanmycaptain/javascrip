@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#nav{
+			width:400px;
+			height:50px;
+			margin:0 auto;
+			text-align:center;
+			color:blue;
+		}
+		#box{
+			width:300px;
+			height:200px;
+			color:red;
+			margin:0 auto;
+			border:1px solid red;
+			font-size:80px;
+			font-family:"楷体";
+			background-color:rgba(236,74,76,0.3);
+			text-align:center;
+			line-height:200px;
+		}
+		input{
+			width:80px;
+			height:40px;
+			margin:0 auto;
+		}
+		div{
+			width:100px;
+			height:50px;
+			margin:20px auto;
+		}
+	</style>
+</head>
+<body>
+	<div  id="nav"><h1>php14期&15期点歌台</h1></div>
+	<div id="box"></div>
+	<div><input type="button" id="btn" value="点击抽奖" onclick="start()"></div>
+	<script>
+		var arr= ['彭钰伦','黄富洲','李赛','杨光','王修','吴金财','钟学霆','包文昊','何伟聪','温莉','段文涛','刘勇','李京直','李亮兵','王卓玲','叶国良','付明','徐圣','李才泰','姚虎林','赵翀','强力','曹宇','刘健','丁良静','曹敬','雷玉兰','徐宇文','许志浩','廖贯良','乔文浩','范志峰','郑晓琳','朱苇龙','颜绵旺','李子明','杨鸿杰','张可可','黄科霖','徐检保','石锦祥','庄保强'];
+	    
+        
+        setInterval(dianming,30);
+
+        function dianming(){
+
+           var index = parseInt(Math.random()*arr.length);
+
+           var divObj = document.getElementById("box");
+           divObj.innerHTML = arr[index];
+
+        }
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="movie_name"></ul>
+    <script>
+        var movie_list = ['阿凡达1','阿凡达2','阿凡达3','阿凡达4']
+        document.write(movie_list.length)
+        var ulobj = document.getElementById('movie_name')
+        var str1 = ''
+        for(var i=0;i<movie_list.length;i++){
+            str1 += '<li>'+movie_list[i]+'</li>'
+        } 
+        ulobj.innerHTML = str1
+    </script>
+</body>
+</html>

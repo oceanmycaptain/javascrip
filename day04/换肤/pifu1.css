@@ -1,0 +1,12 @@
+body{
+    background-color:gold;
+}
+
+button{
+    background-color: green;
+    width: 200px;
+    height: 50px;
+    border: none;
+    color: white;
+    border-style: none
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str1 = 'http://www.baidu.com/index/inex.html'
+        var str2 = str1.split('.')
+        console.log(str2[str2.length-1])
+        
+        var index1 = str1.lastIndexOf('.')
+        var str3 = str1.substring(index1)
+        var str4 = str1.substr(index1)
+        document.write(str4)
+        
+
+    </script>
+</body>
+</html>
