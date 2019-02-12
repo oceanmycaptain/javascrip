@@ -7,6 +7,10 @@ $(function(){
             return false
         }
         var re01 = /^\w{6,20}$/
-        if(re01.test())
+        if(re01.test(User_name)){
+            $userName.next().hide()
+        }else{
+            $userName.next().show().html('用户名是6-20位数字、字母和下划线！')
+        }
     })
 })

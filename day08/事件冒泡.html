@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../day07/js/jquery-1.12.4.min.js"></script>
+    <style>
+    .da{
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+    }
+    .mid{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+    .sma{
+        width: 50px;
+        height: 50px;
+        background-color: green;
+    }
+    </style>
+</head>
+<body>
+    <div class="da">
+        <div class="mid">
+            <div class="sma"></div>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            $('.da').click(function(){
+                alert('da')
+            })
+            $('.mid').click(function(){
+                alert('mid')
+            })
+            $('.sma').click(function(){
+                alert('sma')
+            })
+        })
+    </script>
+</body>
+</html>

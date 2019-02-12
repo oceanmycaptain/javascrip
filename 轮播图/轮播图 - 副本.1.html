@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            /*background-color: red;*/
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .ad {
+            width: 500px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #box img {
+            width: 500px;
+        }
+
+        .ad ul li {
+            width: 500px;
+            height: 200px;
+
+            float: left;
+        }
+
+        .ad ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3000px;
+        }
+
+        .ad ul li.current {
+            background: yellow;
+        }
+
+        .ad ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .ad ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .ad ol li.current {
+            background: yellow;
+        }
+
+        #arr {
+            display: block;
+        }
+
+        #arr span {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: absolute;
+            /*left: 5px;*/
+            top: 50%;
+            margin-top: -20px;
+            background-color: #000;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #left {
+            left: 5px;
+        }
+
+        #arr #right {
+            right: 5px;
+            /*left: auto;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="all">
+        <div class="ad" id="ad">
+            <ul id="imgs">
+                <li><img src="images/1.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/2.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/3.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/4.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/5.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/1.jpg" width='500' height='200' alt="" /></li>
+
+            </ul>
+            <ol id="focus">
+                <li class="current">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+        </div>
+        <div id="arr">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        //封装运动函数 
+        function animate(obj, target) {
+            //清除定时器
+            clearInterval(obj.timeId);
+            obj.timeId = setInterval(function () {
+                // 获取当前对象的offsetLeft属性值 
+                var current = obj.offsetLeft;
+                //设置步长值
+                var step = 10;
+                //判断是向左还是向右 
+                step = current < target ? step : -step;
+                current += step;
+
+                if (Math.abs(target - current) > Math.abs(step)) {
+                    obj.style.left = current + "px";
+                } else {
+                    obj.style.left = target + "px";
+                    clearInterval(obj.timeId);
+                }
+
+            }, 30);
+        }
+    </script>
+    <script>
+        var rightObj = $("right");
+        var leftObj = $("left");
+        var adObj = $("ad");
+        var ulObj = $("imgs");
+        var lisObj = ulObj.children;
+        var adWidth = adObj.offsetWidth;
+        var olNextLisObj = $("focus").children;
+        var boxObj = $("box");
+        var index = 0;
+        var pic = 0;
+        rightObj.onclick = function () {
+            autoPlay();
+        }
+
+        leftObj.onclick = function () {
+            if (index == 0) {
+                let targetPosition = -(adWidth * (lisObj.length - 1));
+                ulObj.style.left = targetPosition + "px";
+                index = lisObj.length - 1;
+            }
+
+            if (pic == 0) {
+                pic = olNextLisObj.length - 1;
+            } else {
+                pic--;
+            }
+
+            for (let i = 0; i < olNextLisObj.length; i++) {
+                olNextLisObj[i].removeAttribute('class');
+            }
+
+            olNextLisObj[pic].setAttribute('class', 'current');
+
+
+            index--;
+            let targetPosition = -(index * adWidth);
+            animate(ulObj, targetPosition);
+        }
+
+
+        for (let i = 0; i < olNextLisObj.length; i++) {
+            olNextLisObj[i].setAttribute("index", i);
+            olNextLisObj[i].onclick = function () {
+                for (let j = 0; j < olNextLisObj.length; j++) {
+                    olNextLisObj[j].removeAttribute("class");
+                }
+                this.setAttribute("class", "current");
+                animate(ulObj, -(this.getAttribute("index") * adWidth));
+                index = pic = this.getAttribute("index");
+            }
+        }
+
+        //开启自动轮播
+      var timeId =  setInterval(autoPlay, 3000);
+
+        boxObj.onmouseover = function(){
+            clearInterval(timeId);
+        }
+        
+        boxObj.onmouseout = function(){
+            timeId =  setInterval(autoPlay, 3000);
+        }
+
+        function autoPlay() {
+            if (index == lisObj.length - 1) {
+                ulObj.style.left = "0px";
+                index = 0;
+            }
+
+            if (pic == olNextLisObj.length - 1) {
+                pic = 0;
+            } else {
+                pic++;
+            }
+
+            for (let i = 0; i < olNextLisObj.length; i++) {
+                olNextLisObj[i].removeAttribute('class');
+            }
+
+            olNextLisObj[pic].setAttribute('class', 'current');
+
+            index++;
+            let targetPosition = -(index * adWidth);
+            animate(ulObj, targetPosition);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist</title>
+	<style type="text/css">
+		.list_con{
+			width:600px;
+			margin:50px auto 0;
+		}
+		.inputtxt{
+			width:550px;
+			height:30px;
+			border:1px solid #ccc;
+			padding:0px;
+			text-indent:10px;			
+		}
+		.inputbtn{
+			width:40px;
+			height:32px;
+			padding:0px;
+			border:1px solid #ccc;
+		}
+		.list{
+			margin:0;
+			padding:0;
+			list-style:none;
+			margin-top:20px;
+		}
+		.list li{
+			height:40px;
+			line-height:40px;
+			border-bottom:1px solid #ccc;
+		}
+
+		.list li span{
+			float:left;
+		}
+
+		.list li a{
+			float:right;
+			text-decoration:none;
+			margin:0 10px;
+		}
+	</style>
+	<script type="text/javascript" src="../day07/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"></script>	
+</head>
+<body>
+
+	<div class="list_con">
+	<h2>To do list</h2>
+		<input type="text" name="" id="txt1" class="inputtxt">
+		<input type="button" name="" value="增加" id="btn1" class="inputbtn">
+		
+		<ul id="list" class="list">
+
+			<li><span>学习html</span><a href="javascript:;" class="up"> ↑ </a><a href="javascript:;" class="down"> ↓ </a><a href="javascript:;" class="del">删除</a></li>
+			<li><span>学习css</span><a href="javascript:;" class="up"> ↑ </a><a href="javascript:;" class="down"> ↓ </a><a href="javascript:;" class="del">删除</a></li>
+			<li><span>学习javascript</span><a href="javascript:;" class="up"> ↑ </a><a href="javascript:;" class="down"> ↓ </a><a href="javascript:;" class="del">删除</a></li>
+
+		</ul>
+
+	</div>
+	<script>
+		$(function(){
+			$('#btn1').click(function(){
+			var newVal = $('#txt1').val()
+			var newLi =	'<li><span>'+ newVal +'</span><a href="javascript:;" class="up"> ↑ </a><a href="javascript:;" class="down"> ↓ </a><a href="javascript:;" class="del">删除</a></li>'
+			if(newVal == ''){
+				alert('输入值不能为空')
+				return
+			}
+			$('ul').prepend(newLi)
+			})
+			// 需要对未来的属性进行相关的添加
+			$('#list').delegate('a','click',function(){
+				var command = $(this).prop('class')
+				if(command =='del'){
+					$(this).parent().remove()
+				}
+				if(command == 'up'){
+					if($(this).parent().index()==0){
+						alert('已经到顶了')
+						return
+					}
+					$(this).parent().insertBefore($(this).parent().prev())
+				}
+				if(command == 'down'){
+					if($(this).parent().nextAll().length== 0){
+						alert('已经到底了')
+						return
+					}
+					$(this).parent().insertAfter($(this).parent().next())
+				}
+			})
+		})
+	</script>
+</body>
+</html>

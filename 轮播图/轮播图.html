@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            /*background-color: red;*/
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .ad {
+            width: 500px;
+            height: 200px;
+            position: relative;
+            overflow: hidden; 
+        }
+
+        #box img {
+            width: 500px;
+        }
+
+        .ad ul li {
+            width: 500px;
+            height: 200px;
+
+            float: left;
+        }
+
+        .ad ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3000px;
+        }
+
+        .ad ul li.current {
+            background: yellow;
+        }
+
+        .ad ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .ad ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .ad ol li.current {
+            background: yellow;
+        }
+
+        #arr {
+            display: block;
+        }
+
+        #arr span {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: absolute;
+            /*left: 5px;*/
+            top: 50%;
+            margin-top: -20px;
+            background-color: #000;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #left {
+            left: 5px;
+        }
+
+        #arr #right {
+            right: 5px;
+            /*left: auto;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="all">
+        <div class="ad" id="ad">
+            <ul id="imgs">
+                <li><img src="images/1.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/2.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/3.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/4.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/5.jpg" width='500' height='200' alt="" /></li>
+
+
+            </ul>
+            <ol id="focus">
+                <li class="current">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+        </div>
+        <div id="arr">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+    <script src="comm.js"></script>
+
+    <script>
+        //获取要操作的标签对象
+        var boxObj = $('box');
+        var adObj = $("ad");
+        var adWidth = adObj.offsetWidth;
+        var ulObj = $("imgs");
+        var lisObj = ulObj.children;
+        var focusObj = $("focus");
+        var leftObj = $("left");
+        var rightObj = $("right");
+
+        var firstObj = lisObj[0].cloneNode(true);
+        ulObj.appendChild(firstObj);
+
+
+
+        //鼠标点击rightObj按钮时 移动图片
+        var index = 0; //用于记录点击的次数 
+        var pic = 0; //用于实现下面的小方块跟着动
+        rightObj.onclick = function () {
+            autoPlay();
+        }
+
+        leftObj.onclick = function () {
+            if (index == 0) {
+                ulObj.style.left = -((lisObj.length - 1) * adWidth) + "px";
+                index = lisObj.length - 1;
+            }
+            index--;
+
+
+            //pic每次点击左边时减1 
+            if (pic > 0) {
+                pic--;
+            } else {
+                pic = focusObj.children.length - 1;
+            }
+
+            for (var i = 0; i < focusObj.children.length; i++) {
+                focusObj.children[i].removeAttribute("class");
+            }
+
+
+
+            focusObj.children[pic].setAttribute("class", "current");
+
+
+            var target = -(index * adWidth);
+            //调用函数 
+            animate(ulObj, target);
+
+
+        }
+
+
+        //当鼠标移到上面的Li上面时显示对应的图片的
+        for (var i = 0; i < focusObj.children.length; i++) {
+            focusObj.children[i].index = i;
+            focusObj.children[i].onclick = function () {
+                for (var j = 0; j < focusObj.children.length; j++) {
+                    focusObj.children[j].removeAttribute("class");
+
+                }
+                this.setAttribute("class", 'current');
+                var target = -(this.index*adWidth);
+                animate(ulObj,target);
+                index = pic = this.index;
+            }
+        }
+        
+
+
+
+
+        //开启自动 轮播
+        //var timeId =  setInterval(autoPlay,3000);
+        
+        boxObj.onmouseover = function(){
+            clearInterval(timeId);
+        }
+        
+        boxObj.onmouseout = function(){
+            timeId =  setInterval(autoPlay,3000);
+        }
+
+
+        function autoPlay(){
+            if (index == lisObj.length - 1) {
+                ulObj.style.left = "0px";
+                index = 0;
+            }
+            index++;
+
+            if (pic < focusObj.children.length - 1) {
+                pic++;
+            } else {
+                pic = 0;
+            }
+
+            for (var i = 0; i < focusObj.children.length; i++) {
+                focusObj.children[i].removeAttribute("class");
+            }
+
+
+
+            focusObj.children[pic].setAttribute("class", "current");
+
+
+
+
+            var target = -(index * adWidth);
+            //调用函数 
+            animate(ulObj, target);
+        }
+
+    </script>
+
+</body>
+
+</html>

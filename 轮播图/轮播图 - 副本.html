@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,
+        ul,
+        ol,
+        li,
+        img {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            /*background-color: red;*/
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .ad {
+            width: 500px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #box img {
+            width: 500px;
+        }
+
+        .ad ul li {
+            width: 500px;
+            height: 200px;
+
+            float: left;
+        }
+
+        .ad ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3000px;
+        }
+
+        .ad ul li.current {
+            background: yellow;
+        }
+
+        .ad ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .ad ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .ad ol li.current {
+            background: yellow;
+        }
+
+        #arr {
+            display: block;
+        }
+
+        #arr span {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: absolute;
+            /*left: 5px;*/
+            top: 50%;
+            margin-top: -20px;
+            background-color: #000;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #left {
+            left: 5px;
+        }
+
+        #arr #right {
+            right: 5px;
+            /*left: auto;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="all">
+        <div class="ad" id="ad">
+            <ul id="imgs">
+                <li><img src="images/1.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/2.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/3.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/4.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/5.jpg" width='500' height='200' alt="" /></li>
+                <li><img src="images/1.jpg" width='500' height='200' alt="" /></li>    
+
+            </ul>
+            <ol id="focus">
+                <li class="current">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+        </div>
+        <div id="arr">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+    <script>
+        function $(id){
+            return document.getElementById(id);
+        }
+
+        function animate(obj,target){
+             //在开启定时器之前需要清除定时器
+             //可以这个timerId作为某一个对象的属性  
+            clearInterval(obj.timerId);
+            //开启一个定时器函数
+            obj.timerId = setInterval(function () {
+                //获取到元素的当前left位置 offsetLeft只能读取不能设置
+                var current = obj.offsetLeft;
+                //需要设置一个步长值 
+                var step = 10;
+                //如果当前位置小于目标位置 正数  
+                step = current < target ? step : -step;
+
+                current += step;
+                //将它设置到目标位置 
+                //如果目标位置减去当前位置它的值大于步长值 就让其加步长值  否则 直接到目标位置   我们将所有的比较的值取绝对值
+                if (Math.abs(target-current) > Math.abs(step)) {
+                    obj.style.left = current + "px";
+                } else {
+                    obj.style.left = target+"px";
+                    //清除定时器
+                    clearInterval(obj.timerId);
+                }
+
+            }, 15);
+        }
+
+    </script>
+    <script>
+        //获取id=right这个按钮 得到一个标签对象
+        var rightObj = $("right");
+        //获取id=ad这个标签对象
+        var adObj = $("ad");
+        var adWidth = adObj.offsetWidth;
+        //console.log(adWidth);
+        var ulObj = $("imgs");
+        var leftObj = $("left");
+        var olsObj = $("focus");
+        var lisObj = olsObj.children;
+        var boxObj = $("box");
+
+        //给这个按钮绑定单击事件
+        var index = 0; //用于记录点击的次数 
+        var pic = 0; //用于控制下面的小方块的移动 
+        rightObj.onclick = function(){
+            
+            autoPlay();
+        }
+
+        //给leftObj这个对象绑定onclick事件 
+        leftObj.onclick = function(){
+            //如果这个时候 已经是显示第一张了 再点击一次要显示最后一张 
+            if(index == 0){
+                ulObj.style.left = -((ulObj.children.length-1)*adWidth)+"px";
+                index = ulObj.children.length-1;
+            }
+            index--;
+            
+            if(pic > 0){
+                pic--;
+            }else{
+                pic = lisObj.length-1;
+            }
+            
+
+             //将其它的高亮要清除掉
+            for(var j=0;j<lisObj.length;j++){
+                    lisObj[j].removeAttribute("class");
+            }
+            lisObj[pic].setAttribute("class","current");    
+
+
+            var MovePosition = -(index*adWidth);
+            animate(ulObj,MovePosition);
+        }
+
+        //给每一个li标签绑定onclick事件 
+        for(var i=0;i<lisObj.length;i++){
+            //这个函数什么时候触发 点击才触发 
+            //在给每一个li绑定事件之前 先给他们每一个做一个标记 
+            lisObj[i].setAttribute("index",i);
+            lisObj[i].onclick = function(){
+                //先清除所有的li标签上面的class
+                for(var j=0;j<lisObj.length;j++){
+                    lisObj[j].removeAttribute("class");
+                }
+                //鼠标点击那一个li给它添加一个class叫current的类  当前对象
+                this.setAttribute("class","current");
+                //调用animate函数
+                var targetPos = -(this.getAttribute("index")*adWidth);
+                //console.log(targetPos);
+            
+                animate(ulObj,targetPos);
+
+                //将点击到这个元素的值赋值给index变量 
+
+                index = pic =  this.getAttribute("index");
+
+
+            }
+        }
+
+        //需要开启一个定时器函数 
+       var tId = setInterval("autoPlay()",5000);
+
+
+        //鼠标放在box盒子身上时让其清除定时器
+        boxObj.onmouseover = function(){
+            clearInterval(tId);
+        }
+
+        boxObj.onmouseout = function(){
+            tId = setInterval("autoPlay()",2000);
+        }
+
+        function autoPlay(){
+            //如果index这个值 等于了li最大的下标 
+            if(index == ulObj.children.length-1){
+                //将ul的style的left属性值 直接设置0px
+                ulObj.style.left = "0px";
+                index = 0;
+            }
+            index++;
+            
+            if(pic < lisObj.length-1){
+                pic++; 
+            }else{
+                pic = 0;
+            }
+           //给下面的li设置高亮的效果 
+            //将其它的高亮要清除掉
+            for(var j=0;j<lisObj.length;j++){
+                    lisObj[j].removeAttribute("class");
+            }
+            lisObj[pic].setAttribute("class","current");
+
+
+
+            //调用animate函数 让谁移到到哪里去 
+            var MovePosition = -(index*adWidth);
+            animate(ulObj,MovePosition);
+        }
+
+        
+
+        
+
+    </script>
+
+</body>
+
+</html>
