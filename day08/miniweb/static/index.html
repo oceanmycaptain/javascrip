@@ -29,9 +29,7 @@
                 for(var i=0;i<dat.length;i++)
                 {
                     // dat[i].id  对象名.shuxing
-                    str += '<tr><td>'+dat[i].id+'</td><td>'+ dat[i].code +'</td><td>全新好</td><td>10.01%</td><td>4.40%</td><td>全新好</td><td>16.05</td><td>2017-07-18</td><td><input type="button" value="添加" name="toAdd"></td></tr> '
-
-                    // 95 个tr
+                    str += '<tr><td>'+dat[i].id+'</td><td>'+ dat[i].code +'</td><td>'+dat[i].sname+'</td><td>'+dat[i].rate01+'</td><td>'+dat[i].rate02+'</td><td>'+dat[i].new_prize+'</td><td>'+dat[i].high+'</td><td>'+dat[i].date+'</td><td><input type="button" value="添加" name="toAdd" code="'+dat[i].code+'"></td></tr> '
                 }
                 // 放数据  设置table的内容是str
                 $('.table').html( str )
@@ -40,6 +38,22 @@
                 // 请求失败
                 alert('请求失败')
             }
+        })
+        $('.table').delegate('input','click',function(){
+            // alert('1')
+            var code_num = $(this).attr('code')
+            $.ajax({
+                url:'/add_data',
+                type:'get',
+                dataType:'text',
+                data:{'code':code_num},
+                success:function(data){
+                    alert(data)
+                },
+                error:function(){
+                    alert('出现不明故障')
+                }
+            })
         })
     })
     </script>

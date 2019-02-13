@@ -1,0 +1,39 @@
+<!-- 1-5 CACAB 6-10 CDDAC
+11-15 DADBA 16-20 CCACB 
+21: 2010 22:return
+23:join(‘,’) 24: remove()
+25: $(‘div’).val() 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            float: left;
+            list-style: none;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+            var a=1
+            while (a<=9) {
+                b = 1
+                while(b<=a){
+                    var z = a*b
+                    document.write('<li>'+b+'*'+a+'='+z+'</li>')
+                    b++
+                }
+                document.write('<br>')
+                a ++
+            }
+    </script>   
+</body>
+</html>

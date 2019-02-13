@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../day07/js/jquery-1.12.4.min.js"></script>
+    <script>
+    $(function(){
+        $('input').keyup(function(){
+            // alert(1)
+            var valu = $(this).val()
+            var str = ''
+            $.ajax({
+                url:'https://sug.so.360.cn/suggest',
+                type:'get',
+                dataType:'jsonp',
+                data:{'word':valu}
+            }).done(function(data){
+                for(var i=0;i<data.s.length;i++){
+                    str += '<li>'+data.s[i]+'</li>'}
+                    $('ul').html(str)
+            })
+        })
+    })
+    </script>
+</head>
+<body>
+    <input type="text">
+    <ul></ul>
+</body>
+</html>

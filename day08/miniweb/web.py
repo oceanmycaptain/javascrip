@@ -168,7 +168,7 @@ def update_note_info(file_name,url_param,url=None):
     return "更新成功"
 
 
-# ajax接口
+#ajax接口
 @route(r"/add_data")
 def update_note_info(file_name, url_param, url=None):
     

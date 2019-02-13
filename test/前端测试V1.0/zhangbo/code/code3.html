@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery.js"></script>
+    <style>
+       li{
+        float: left;
+        list-style: none;
+        width: 110px;
+        border: 1px solid #ccc;
+        padding: auto;
+        text-align: center;
+        position: relative;
+       }
+       p{
+           color: red;
+           position:absolute;
+           left: 40px;
+           top: 6px
+       }
+       image{
+            position:absolute;
+            left: 40px;
+            top: 6px
+       }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><img src="../images/apple.jpg" alt="苹果"><p>苹果</p></li>
+            <li><img src="../images/huawei.jpg" alt="华为"><p>华为</p></li>
+            <li><img src="../images/meizu.jpg" alt="每组"><p>每组</p></li>
+            <li><img src="../images/samsung.jpg" alt="三星"><p>三星</p></li>
+            <li><img src="../images/xiaomi.jpg" alt="小米"><p>小米</p></li>
+        </ul>
+    </div>
+    <script>
+    $(function(){
+        $('li').mousemove(function(){
+            $(this).children('img').hide()
+            $(this).children('p').show()
+        })
+        $('li').mouseout(function(){
+            $(this).children('p').hide()
+            $(this).children('img').show()
+        })
+    })
+    </script>
+</body>
+</html>

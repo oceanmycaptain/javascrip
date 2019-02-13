@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id='new_vue'>{{ str }}
+        <div>{{str1.split('').reverse().join('')}} </div>
+        <span>{{str2?'好':'不好'}} </span>
+        <br>
+        <a v-bind:href="str3">百度</a>
+        <br>
+        <span>{{num+1}}</span>
+        <br>
+        <button v-on:click='num+=1'>按钮</button>
+        <button @click='fun'>函数式按钮</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:'#new_vue',
+            data:{
+                str:'hello Vue',
+                str1:'asajdfaffafn',
+                str2:false,
+                str3:"www.baidu.com",
+                num:0
+            },
+            methods:{
+                fun:function() {
+                    this.num +=2
+                }
+            }
+        })
+    </script>
+</body>
+</html>
