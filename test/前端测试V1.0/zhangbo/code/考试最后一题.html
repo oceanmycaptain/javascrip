@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+
+        .box {
+            margin-top: 10px;
+            margin-left: 10px;
+            width: 510px;
+            height: 36px;
+            border:1px solid #f00;
+        }
+
+        .box ul li {
+            float: left;
+            width: 102px;
+            height: 36px;
+            line-height: 36px;
+            color: #f00;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <ul style="overflow:hidden;" id="list"><li><img src="images/huawei.jpg" alt=""></li>
+            <li><img src="images/xiaomi.jpg" alt=""></li>
+            <li><img src="images/samsung.jpg" alt=""></li>
+            <li><img src="images/apple.jpg" alt=""></li>
+            <li><img src="images/meizu.jpg" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        var listObj = document.getElementById("list");
+        var lisObj = listObj.children;
+        var arr = ['华为','小米','三星','苹果','魅族']
+        for(var i = 0;i<lisObj.length;i++){
+            lisObj[i].setAttribute("index",i);
+            var oldContent;
+            lisObj[i].onmouseenter = function(){
+                if(this.firstChild.nodeType == 1){
+                    oldContent = this.innerHTML;
+                }
+                
+                console.log(oldContent);
+                this.innerHTML = arr[this.getAttribute("index")];
+            }
+            // lisObj[i].onmouseleave = function(){
+              
+            //     this.innerHTML = oldContent;
+            // }
+        }
+    
+    </script>
+</body>
+
+</html>

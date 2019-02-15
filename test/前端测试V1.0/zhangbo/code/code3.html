@@ -16,36 +16,41 @@
         text-align: center;
         position: relative;
        }
-       p{
+       /* p{
            color: red;
            position:absolute;
            left: 40px;
            top: 6px
-       }
+       } */
        image{
             position:absolute;
-            left: 40px;
-            top: 6px
+       }
+       .text2{
+            color: red;
+            position:absolute;
+       }
+       .text1{
+           display: none;
        }
     </style>
 </head>
 <body>
     <div>
         <ul>
-            <li><img src="../images/apple.jpg" alt="苹果"><p>苹果</p></li>
-            <li><img src="../images/huawei.jpg" alt="华为"><p>华为</p></li>
-            <li><img src="../images/meizu.jpg" alt="每组"><p>每组</p></li>
-            <li><img src="../images/samsung.jpg" alt="三星"><p>三星</p></li>
-            <li><img src="../images/xiaomi.jpg" alt="小米"><p>小米</p></li>
+            <li><img src="../images/apple.jpg" alt="苹果"><p class="text1">苹果</p></li>
+            <li><img src="../images/huawei.jpg" alt="华为"><p class="text1">华为</p></li>
+            <li><img src="../images/meizu.jpg" alt="每组"><p class="text1">每组</p></li>
+            <li><img src="../images/samsung.jpg" alt="三星"><p class="text1">三星</p></li>
+            <li><img src="../images/xiaomi.jpg" alt="小米"><p class="text1">小米</p></li>
         </ul>
     </div>
     <script>
     $(function(){
-        $('li').mousemove(function(){
+        $('ul').delegate('li','mouseover',function(){
             $(this).children('img').hide()
-            $(this).children('p').show()
+            $(this).children('p').show().removeClass().addClass('text2')
         })
-        $('li').mouseout(function(){
+        $('ul').delegate('li','mouseleave',function(){
             $(this).children('p').hide()
             $(this).children('img').show()
         })
